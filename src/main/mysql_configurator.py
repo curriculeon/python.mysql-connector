@@ -5,7 +5,9 @@ import mysql.connector
 class MySqlConfigurator(object):
     def __init__(self, database_name):
         self.database_name = database_name
-        self.connection = mysql.connector.connect(
+
+    def get_connection(self):
+        return mysql.connector.connect(
             host="localhost",
             user="root",
             password=""
@@ -22,4 +24,4 @@ class MySqlConfigurator(object):
 
     def execute(self, statement):
         print("Executing statement `{}`".format(statement))
-        self.connection.cursor().execute(statement)
+        self.get_connection().cursor().execute(statement)
